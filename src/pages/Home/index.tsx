@@ -1,5 +1,5 @@
 import { PlayIcon } from "lucide-react";
-import { CountdownContainer, FormContainer, HomeContainer, Separator } from "./style";
+import { CountdownContainer, Button, FormContainer, HomeContainer, Separator, TaskInput, MinutesAmountInput } from "./style";
 
 export function Home() {
   return (
@@ -7,10 +7,10 @@ export function Home() {
       <form action="">
         <FormContainer>
           <label htmlFor="task">Vou estudar </label>
-          <input id="task" />
+          <TaskInput id="task" placeholder="Estudar Geografia"/>
 
           <label htmlFor="minutesAmount">durante</label>
-          <input type="number" id="minutesAmount" />
+          <MinutesAmountInput type="number" id="minutesAmount" />
 
           <span>minutos.</span>
         </FormContainer>
@@ -21,10 +21,10 @@ export function Home() {
           <span>0</span>
           <span>0</span>
         </CountdownContainer>
-        <button type="submit">
+        <Button type="submit">
           {" "}
           <PlayIcon /> Comecar{" "}
-        </button>
+        </Button>
       </form>
     </HomeContainer>
   );

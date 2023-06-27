@@ -49,3 +49,44 @@ export const FormContainer = styled.div`
    flex-wrap: wrap;
 
 `
+
+export const Button = styled.button`
+   width: 100%;
+   border: 0;
+   padding: 1rem;
+   border-radius: 8px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 0.5rem;
+   font-weight: bold;
+   cursor: pointer;
+   background-color: ${props => props.theme['green-500']};
+   color: ${props => props.theme['gray-100']};
+   &:not(:disabled):hover {
+      background-color: ${props => props.theme['green-700']};
+   }
+   &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      
+   }
+`
+
+const BaseInput = styled.input`
+   background: transparent;
+   border: none;
+   border-bottom: 2px solid ${props => props.theme['green-300']};
+   height: 2.5rem;
+   outline: none;
+   font-size: inherit;
+   padding: 0 0.5rem;
+   color: white;
+`
+
+export const TaskInput = styled(BaseInput)`
+   flex: 1;
+`
+export const MinutesAmountInput = styled(BaseInput)`
+   width: 4rem;
+`
