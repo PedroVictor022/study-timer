@@ -9,6 +9,7 @@ export const Global = createGlobalStyle`
    body {
       background: #222;
       color: #fff;
+      -webkit-font-smoothing: antialiased;
    }
    body, input, textarea, button {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
