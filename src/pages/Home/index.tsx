@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { PlayIcon } from "lucide-react";
 import {
   CountdownContainer,
@@ -10,15 +11,47 @@ import {
 } from "./style";
 
 import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { newCycleSchema } from "../../@types/zod-schema";
+
+interface Cycle {
+  id: string;
+  task: string;
+  minutesAmout: number;
+}
+type NewCycleProps = z.infer<typeof newCycleSchema>;
 
 export function Home() {
-  const { register, handleSubmit, watch } = useForm();
+  const [cycle, setCycle] = useState<Cycle[]>([]);
+  const [activeCycleId, setActiveCycleId] = useState<string | null>(null);
 
-  function handleCreateNewCycle(data: any) {
+  const { register, handleSubmit, watch, reset } = useForm<NewCycleProps>({
+    resolver: zodResolver(newCycleSchema),
+    defaultValues: {
+      minutesAmount: 0,
+      task: "",
+    },
+  });
+
+  function handleCreateNewCycle(data: NewCycleProps) {
+
     console.log(data);
+    const newCycle: Cycle = {
+      id: String(new Date().getTime()),
+      task: data.task,
+      minutesAmout: data.minutesAmount,
+    };
+    setCycle((state) => [...state, newCycle]);
+    setActiveCycleId(newCycle.id)
+    reset();
   }
 
-  const task = watch('task');
+  const activeCycle = cycle.find(cycle => cycle.id === activeCycleId)
+
+  console.log(activeCycle)
+
+  const task = watch("task");
   const isSubmitDisable = !task;
 
   return (
